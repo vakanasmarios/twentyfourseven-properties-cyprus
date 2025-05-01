@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TwentyFourSeven Properties</title>
+  <style>
+    html { scroll-behavior: smooth; }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div style="text-align: center; margin: 20px 0;">
+    <label for="lang">Choose Language:</label>
+    <select id="lang" onchange="switchLanguage(this.value)" style="padding: 6px 12px; margin-left: 10px;">
+      <option value="en">English</option>
+      <option value="gr">Ελληνικά</option>
+      <option value="ru">Русский</option>
+      <option value="zh">中文</option>
+      <option value="he">עברית</option>
+    </select>
+  </div>
+
+  <h2 class="translatable fade-in"
+      data-en="2-Bedroom Apartment — Ayios Tychonas, Limassol"
+      data-gr="Διαμέρισμα 2 Υπνοδωματίων — Άγιος Τύχων, Λεμεσός"
+      data-ru="2-комнатная квартира — Айос Тихонас, Лимассол"
+      data-zh="两卧室公寓 — 利马索尔，阿吉奥斯蒂霍纳斯"
+      data-he="דירת 2 חדרי שינה — אגיוס טיכונאס, לימסול">
+      2-Bedroom Apartment — Ayios Tychonas, Limassol
+  </h2>
+
+  <p class="translatable fade-in"
+     data-en="€595,000 (Negotiable)
+A beautiful, fully furnished 2-bedroom apartment located on Amathountos Avenue, just 50m from the beach.
+94 sq. meters on the first floor of a small development
+Two balconies with sea views
+Covered private parking
+Easy access to Paphos and Larnaca airports
+Ready to move in"
+     data-gr="€595,000 (Διαπραγματεύσιμο)
+Ένα όμορφο, πλήρως επιπλωμένο διαμέρισμα 2 υπνοδωματίων στην οδό Αμαθούντος, μόλις 50μ από την παραλία.
+94 τ.μ. στον πρώτο όροφο μιας μικρής ανάπτυξης
+Δύο μπαλκόνια με θέα στη θάλασσα
+Καλυμμένος ιδιωτικός χώρος στάθμευσης
+Εύκολη πρόσβαση προς τα αεροδρόμια Πάφου και Λάρνακας
+Έτοιμο για κατοίκηση"
+     data-ru="€595,000 (обсуждается)
+Красивая меблированная квартира с 2 спальнями на улице Аматунтос, всего в 50 м от пляжа.
+94 кв.м, первый этаж небольшого комплекса
+Два балкона с видом на море
+Собственная крытая парковка
+Удобный доступ к аэропортам Пафоса и Ларнаки
+Готова к заселению"
+     data-zh="€595,000（可议）
+一套漂亮的带家具的两卧室公寓，位于阿马图索斯大道，距海滩仅50米。
+位于一个小型建筑的一楼，总面积94平方米
+两个阳台可看海景
+专属有盖停车位
+方便前往帕福斯和拉纳卡机场
+拎包入住"
+     data-he="€595,000 (ניתן למשא ומתן)
+דירה יפהפייה עם שני חדרי שינה מרוהטת במלואה, ברחוב אמאתונטוס, 50 מטר מהחוף.
+94 מ"ר בקומה הראשונה של פרויקט קטן
+שני מרפסות עם נוף לים
+חניה פרטית מקורה
+גישה נוחה לנמלי התעופה של פאפוס ולרנקה
+מוכנה למגורים">
+    €595,000 (Negotiable)<br>
+    A beautiful, fully furnished 2-bedroom apartment located on Amathountos Avenue, just 50m from the beach.<br>
+    94 sq. meters on the first floor of a small development<br>
+    Two balconies with sea views<br>
+    Covered private parking<br>
+    Easy access to Paphos and Larnaca airports<br>
+    Ready to move in
+  </p>
+
+  <script>
+    function switchLanguage(lang) {
+      const translatable = document.querySelectorAll('[data-' + lang + ']');
+      translatable.forEach(el => {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = el.getAttribute('data-' + lang);
+        } else {
+          el.innerHTML = el.getAttribute('data-' + lang).replace(/\n/g, '<br>');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
