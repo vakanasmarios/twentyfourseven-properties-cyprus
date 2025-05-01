@@ -1,101 +1,116 @@
-index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>TwentyFourSeven Properties</title>
-  <style>
-    html { scroll-behavior: smooth; }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease forwards;
-    }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Real Estate Company</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    const translations = {
+      en: {
+        siteTitle: "Welcome to Dream Homes",
+        listingsTitle: "Property Listings",
+        properties: [
+          {
+            title: "Beautiful House in Miami",
+            description: "3 bedrooms, 2 bathrooms, near the beach."
+          },
+          {
+            title: "Modern Apartment in New York",
+            description: "2 bedrooms, 1 bathroom, city view."
+          }
+        ]
+      },
+      ru: {
+        siteTitle: "Добро пожаловать в Dream Homes",
+        listingsTitle: "Список недвижимости",
+        properties: [
+          {
+            title: "Красивый дом в Майами",
+            description: "3 спальни, 2 ванные комнаты, рядом с пляжем."
+          },
+          {
+            title: "Современная квартира в Нью-Йорке",
+            description: "2 спальни, 1 ванная комната, вид на город."
+          }
+        ]
+      },
+      zh: {
+        siteTitle: "欢迎来到梦想家园",
+        listingsTitle: "房产列表",
+        properties: [
+          {
+            title: "迈阿密美丽的房子",
+            description: "3间卧室，2间浴室，靠近海滩。"
+          },
+          {
+            title: "纽约现代公寓",
+            description: "2间卧室，1间浴室，城市景观。"
+          }
+        ]
+      },
+      he: {
+        siteTitle: "ברוכים הבאים ל- Dream Homes",
+        listingsTitle: "רשימת נכסים",
+        properties: [
+          {
+            title: "בית יפה במיאמי",
+            description: "3 חדרי שינה, 2 חדרי אמבטיה, קרוב לחוף."
+          },
+          {
+            title: "דירה מודרנית בניו יורק",
+            description: "2 חדרי שינה, חדר אמבטיה אחד, נוף לעיר."
+          }
+        ]
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = translations[lang];
+
+      document.getElementById('site-title').textContent = t.siteTitle;
+      document.getElementById('listings-title').textContent = t.listingsTitle;
+
+      const propertyElements = document.querySelectorAll('.property');
+      propertyElements.forEach((el, index) => {
+        el.querySelector('.property-title').textContent = t.properties[index].title;
+        el.querySelector('.property-description').textContent = t.properties[index].description;
+      });
+
+      if (lang === 'he') {
+        document.body.style.direction = 'rtl';
+      } else {
+        document.body.style.direction = 'ltr';
       }
     }
-  </style>
+  </script>
 </head>
 <body>
-  <div style="text-align: center; margin: 20px 0;">
-    <label for="lang">Choose Language:</label>
-    <select id="lang" onchange="switchLanguage(this.value)" style="padding: 6px 12px; margin-left: 10px;">
-      <option value="en">English</option>
-      <option value="gr">Ελληνικά</option>
-      <option value="ru">Русский</option>
-      <option value="zh">中文</option>
-      <option value="he">עברית</option>
-    </select>
-  </div>
 
-  <h2 class="translatable fade-in"
-      data-en="2-Bedroom Apartment — Ayios Tychonas, Limassol"
-      data-gr="Διαμέρισμα 2 Υπνοδωματίων — Άγιος Τύχων, Λεμεσός"
-      data-ru="2-комнатная квартира — Айос Тихонас, Лимассол"
-      data-zh="两卧室公寓 — 利马索尔，阿吉奥斯蒂霍纳斯"
-      data-he="דירת 2 חדרי שינה — אגיוס טיכונאס, לימסול">
-      2-Bedroom Apartment — Ayios Tychonas, Limassol
-  </h2>
+  <header>
+    <h1 id="site-title">Welcome to Dream Homes</h1>
+    <nav>
+      <button onclick="setLanguage('en')">🇺🇸 English</button>
+      <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+      <button onclick="setLanguage('zh')">🇨🇳 中文</button>
+      <button onclick="setLanguage('he')">🇮🇱 עברית</button>
+    </nav>
+  </header>
 
-  <p class="translatable fade-in"
-     data-en="€595,000 (Negotiable)
-A beautiful, fully furnished 2-bedroom apartment located on Amathountos Avenue, just 50m from the beach.
-94 sq. meters on the first floor of a small development
-Two balconies with sea views
-Covered private parking
-Easy access to Paphos and Larnaca airports
-Ready to move in"
-     data-gr="€595,000 (Διαπραγματεύσιμο)
-Ένα όμορφο, πλήρως επιπλωμένο διαμέρισμα 2 υπνοδωματίων στην οδό Αμαθούντος, μόλις 50μ από την παραλία.
-94 τ.μ. στον πρώτο όροφο μιας μικρής ανάπτυξης
-Δύο μπαλκόνια με θέα στη θάλασσα
-Καλυμμένος ιδιωτικός χώρος στάθμευσης
-Εύκολη πρόσβαση προς τα αεροδρόμια Πάφου και Λάρνακας
-Έτοιμο για κατοίκηση"
-     data-ru="€595,000 (обсуждается)
-Красивая меблированная квартира с 2 спальнями на улице Аматунтос, всего в 50 м от пляжа.
-94 кв.м, первый этаж небольшого комплекса
-Два балкона с видом на море
-Собственная крытая парковка
-Удобный доступ к аэропортам Пафоса и Ларнаки
-Готова к заселению"
-     data-zh="€595,000（可议）
-一套漂亮的带家具的两卧室公寓，位于阿马图索斯大道，距海滩仅50米。
-位于一个小型建筑的一楼，总面积94平方米
-两个阳台可看海景
-专属有盖停车位
-方便前往帕福斯和拉纳卡机场
-拎包入住"
-     data-he="€595,000 (ניתן למשא ומתן)
-דירה יפהפייה עם שני חדרי שינה מרוהטת במלואה, ברחוב אמאתונטוס, 50 מטר מהחוף.
-94 מ"ר בקומה הראשונה של פרויקט קטן
-שני מרפסות עם נוף לים
-חניה פרטית מקורה
-גישה נוחה לנמלי התעופה של פאפוס ולרנקה
-מוכנה למגורים">
-    €595,000 (Negotiable)<br>
-    A beautiful, fully furnished 2-bedroom apartment located on Amathountos Avenue, just 50m from the beach.<br>
-    94 sq. meters on the first floor of a small development<br>
-    Two balconies with sea views<br>
-    Covered private parking<br>
-    Easy access to Paphos and Larnaca airports<br>
-    Ready to move in
-  </p>
+  <section id="listings">
+    <h2 id="listings-title">Property Listings</h2>
 
-  <script>
-    function switchLanguage(lang) {
-      const translatable = document.querySelectorAll('[data-' + lang + ']');
-      translatable.forEach(el => {
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-          el.placeholder = el.getAttribute('data-' + lang);
-        } else {
-          el.innerHTML = el.getAttribute('data-' + lang).replace(/\n/g, '<br>');
-        }
-      });
-    }
-  </script>
+    <div class="property">
+      <h3 class="property-title">Beautiful House in Miami</h3>
+      <p class="property-description">3 bedrooms, 2 bathrooms, near the beach.</p>
+    </div>
+
+    <div class="property">
+      <h3 class="property-title">Modern Apartment in New York</h3>
+      <p class="property-description">2 bedrooms, 1 bathroom, city view.</p>
+    </div>
+
+  </section>
+
 </body>
 </html>
